@@ -41,7 +41,7 @@ public class ColorCommand implements ICommand {
             return;
         }
 
-        Menus.COLOR_MENU.open(player);
+        //Menus.COLOR_MENU.open(player);
     }
 
 }

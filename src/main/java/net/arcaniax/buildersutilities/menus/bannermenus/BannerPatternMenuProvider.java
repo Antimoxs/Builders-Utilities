@@ -44,7 +44,7 @@ import java.util.List;
 public class BannerPatternMenuProvider implements InventoryProvider {
 
     private static final ItemStack grayPane = Items
-            .create(Material.GRAY_STAINED_GLASS_PANE, (short) 0, 1, "&7", "");
+            .create(Material.STAINED_GLASS_PANE, (short) 7, 1, "&7", "");
     private static final ItemStack randomizeHead = Items.createHead(
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzk3OTU1NDYyZTRlNTc2NjY0NDk5YWM0YTFjNTcyZjYxNDNmMTlhZDJkNjE5NDc3NjE5OGY4ZDEzNmZkYjIifX19",
             1,
@@ -55,7 +55,7 @@ public class BannerPatternMenuProvider implements InventoryProvider {
     private static final ItemStack closeButton = Items
             .create(Material.BARRIER, (short) 0, 1, "&cClick to close", "");
     private static final ItemStack whiteBanner = Items
-            .create(Material.WHITE_BANNER, (short) 0, 1, "&c", "");
+            .create(Material.BANNER, (short) 0, 1, "&c", "");
 
     @Override
     public void init(Player player, InventoryContents contents) {

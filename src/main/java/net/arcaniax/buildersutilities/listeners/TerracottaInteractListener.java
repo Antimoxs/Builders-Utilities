@@ -29,13 +29,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.data.Directional;
+import org.bukkit.block.BlockState;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.material.Directional;
+import org.bukkit.material.MaterialData;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -60,7 +62,7 @@ public class TerracottaInteractListener implements Listener {
         if (!event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
-        if (!event.getHand().equals(EquipmentSlot.HAND)) {
+        if (!event.isBlockInHand()) {
             return;
         }
         if (!event.getClickedBlock().getType().name().contains("GLAZED")) {
@@ -78,17 +80,18 @@ public class TerracottaInteractListener implements Listener {
         }
         Bukkit.getScheduler().runTaskLater(BuildersUtilities.getInstance(), () -> {
             Block block = event.getClickedBlock();
-            Directional directional = (Directional) block.getBlockData();
-            if (directional.getFacing().equals(BlockFace.NORTH)) {
-                directional.setFacing(BlockFace.EAST);
-            } else if (directional.getFacing().equals(BlockFace.EAST)) {
-                directional.setFacing(BlockFace.SOUTH);
-            } else if (directional.getFacing().equals(BlockFace.SOUTH)) {
-                directional.setFacing(BlockFace.WEST);
-            } else if (directional.getFacing().equals(BlockFace.WEST)) {
-                directional.setFacing(BlockFace.NORTH);
+            BlockState state = block.getState();
+            BlockFace face = block.getFace(block);
+            if (face.equals(BlockFace.NORTH)) {
+                state.setData(new MaterialData(block.getType(), (byte) 0));
+            } else if (face.equals(BlockFace.EAST)) {
+                state.setData(new MaterialData(block.getType(), (byte) 2));
+            } else if (face.equals(BlockFace.SOUTH)) {
+                state.setData(new MaterialData(block.getType(), (byte) 1));
+            } else if (face.equals(BlockFace.WEST)) {
+                state.setData(new MaterialData(block.getType(), (byte) 3));
             }
-            block.setBlockData(directional);
+            state.update(true);
         }, 0L);
         event.setCancelled(true);
     }

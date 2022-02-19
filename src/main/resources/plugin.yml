@@ -1,8 +1,8 @@
 name: Builders-Utilities
 version: "${version}"
-api-version: 1.13
+api-version: 1.8
 main: net.arcaniax.buildersutilities.BuildersUtilities
-authors: [ Ktar5, Arcaniax ]
+authors: [ Ktar5, Arcaniax, Antimoxs ]
 website: "https://www.spigotmc.org/resources/42361/"
 commands:
   butil:

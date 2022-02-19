@@ -34,8 +34,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ColorMenuProvider implements InventoryProvider {
+//public class ColorMenuProvider implements InventoryProvider {
 
+    /*
     private static final float MULTIPLIER = 255f / 20f;
     private static final String LORE = "&7__&7Left click to increase__&7Right click to decrease__&7Shift click to change by 5";
 
@@ -52,8 +53,9 @@ public class ColorMenuProvider implements InventoryProvider {
     }
 
     private void setLeatherItems(Player player, InventoryContents contents) {
+
         int r;
-        if (contents.get(3, 4).get().getItem().getType().equals(Material.RED_STAINED_GLASS)) {
+        if (contents.get(3, 4).get().getItem().getType().equals(Material.STAINED_GLASS_PANE)) {
             r = 0;
         } else {
             r = (int) (contents.get(3, 4).get().getItem().getAmount() * MULTIPLIER);
@@ -93,9 +95,12 @@ public class ColorMenuProvider implements InventoryProvider {
                 Items.color(new ItemStack(Material.LEATHER_BOOTS), r, g, b),
                 inventoryClickEvent -> player.getInventory().addItem(Items.color(new ItemStack(Material.LEATHER_BOOTS), r, g, b))
         ));
+
+
     }
 
     private void setRedItem(Player player, InventoryContents contents, int amount) {
+
         contents.set(3, 4, ClickableItem.of(
                 amount == 0 ? Items.create(Material.RED_STAINED_GLASS, "&cRed", LORE) :
                         Items.createHead(
@@ -197,4 +202,6 @@ public class ColorMenuProvider implements InventoryProvider {
         }));
     }
 
-}
+     */
+
+//}

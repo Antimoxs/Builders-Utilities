@@ -74,7 +74,7 @@ public class Menus {
             .closeable(true)
             .build();
 
-    public static final SmartInventory COLOR_MENU = SmartInventory.builder()
+    /*public static final SmartInventory COLOR_MENU = SmartInventory.builder()
             .manager(BuildersUtilities.getInstance().getInventoryManager())
             .id("buildersutilscolor")
             .provider(new ColorMenuProvider())
@@ -82,7 +82,7 @@ public class Menus {
             .listener(removeGhostItemsListener)
             .title(ChatColor.BLUE + "Armor Color Creator")
             .closeable(true)
-            .build();
+            .build();*/
 
     public static final SmartInventory SECRET_BLOCK_MENU = SmartInventory.builder()
             .manager(BuildersUtilities.getInstance().getInventoryManager())

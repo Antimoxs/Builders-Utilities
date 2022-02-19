@@ -42,9 +42,9 @@ import org.bukkit.potion.PotionEffectType;
 
 public class UtilitiesMenuProvider implements InventoryProvider {
 
-    private static final ItemStack ENABLED = Items.create(Material.GREEN_STAINED_GLASS_PANE, "&c", "");
-    private static final ItemStack DISABLED = Items.create(Material.RED_STAINED_GLASS_PANE, "&c", "");
-    private static final ItemStack NO_PERMISSION = Items.create(Material.ORANGE_STAINED_GLASS_PANE, "&c", "");
+    private static final ItemStack ENABLED = Items.create(Material.STAINED_GLASS_PANE, (short) 13, 1, "&c", "");
+    private static final ItemStack DISABLED = Items.create(Material.STAINED_GLASS_PANE, (short) 14, 1, "&c", "");
+    private static final ItemStack NO_PERMISSION = Items.create(Material.STAINED_GLASS_PANE, (short) 1, 1, "&c", "");
 
     private static final String ENABLED_LORE = "&a&lEnabled__&7__&7Click to toggle";
     private static final String DISABLED_LORE = "&c&lDisabled__&7__&7Click to toggle";
@@ -61,7 +61,6 @@ public class UtilitiesMenuProvider implements InventoryProvider {
     public void init(Player player, InventoryContents contents) {
         setIronTrapdoorItem(player, contents);
         setSlabItem(player, contents);
-        setTerracottaItem(player, contents);
         setNightVisionItem(player, contents);
         setNoClipItem(player, contents);
         setFlyItem(player, contents);
@@ -104,14 +103,14 @@ public class UtilitiesMenuProvider implements InventoryProvider {
         if (!player.hasPermission("builders.util.slabs")) {
             setNoPermission(2, contents);
             contents.set(1, 2, ClickableItem.empty(
-                    Items.create(Material.STONE_SLAB, "&6Custom Slab Breaking", "&7&lNo Permission")));
+                    Items.create(Material.STONE_SLAB2, "&6Custom Slab Breaking", "&7&lNo Permission")));
             return;
         }
 
         if (!BlockBreakListener.slabIds.contains(player.getUniqueId())) {
             setEnabledGlassPanes(2, true, contents);
             contents.set(1, 2, ClickableItem.of(
-                    Items.create(Material.STONE_SLAB,
+                    Items.create(Material.STONE_SLAB2,
                             "&6Custom Slab Breaking", ENABLED_LORE + SLAB_BREAKING_LORE
                     ),
                     inventoryClickEvent -> {
@@ -122,7 +121,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
         } else {
             setEnabledGlassPanes(2, false, contents);
             contents.set(1, 2, ClickableItem.of(
-                    Items.create(Material.STONE_SLAB,
+                    Items.create(Material.STONE_SLAB2,
                             "&6Custom Slab Breaking", DISABLED_LORE + SLAB_BREAKING_LORE
                     ),
                     inventoryClickEvent -> {
@@ -133,52 +132,18 @@ public class UtilitiesMenuProvider implements InventoryProvider {
         }
     }
 
-    private void setTerracottaItem(Player player, InventoryContents contents) {
-        if (!player.hasPermission("builders.util.terracotta")) {
-            setNoPermission(3, contents);
-            contents.set(1, 3, ClickableItem.empty(
-                    Items.create(Material.ORANGE_GLAZED_TERRACOTTA, "&6Glazed Terracotta Rotating", "&7&lNo Permission")));
-            return;
-        }
-
-        if (!TerracottaInteractListener.terracottaIds.contains(player.getUniqueId())) {
-            setEnabledGlassPanes(3, true, contents);
-            contents.set(1, 3, ClickableItem.of(
-                    Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
-                            "&6Glazed Terracotta Rotating", ENABLED_LORE + GLAZED_ROTATING_LORE
-                    ),
-                    inventoryClickEvent -> {
-                        TerracottaInteractListener.terracottaIds.add(player.getUniqueId());
-                        setTerracottaItem(player, contents);
-                    }
-            ));
-        } else {
-            setEnabledGlassPanes(3, false, contents);
-            contents.set(1, 3, ClickableItem.of(
-                    Items.create(Material.ORANGE_GLAZED_TERRACOTTA,
-                            "&6Glazed Terracotta Rotating", DISABLED_LORE + GLAZED_ROTATING_LORE
-                    ),
-                    inventoryClickEvent -> {
-                        TerracottaInteractListener.terracottaIds.remove(player.getUniqueId());
-                        setTerracottaItem(player, contents);
-                    }
-            ));
-        }
-
-    }
-
     private void setNightVisionItem(Player player, InventoryContents contents) {
         if (!player.hasPermission("builders.util.nightvision")) {
             setNoPermission(5, contents);
             contents.set(1, 5, ClickableItem.empty(
-                    Items.create(Material.ENDER_EYE, "&6Night Vision", "&7&lNo Permission")));
+                    Items.create(Material.EYE_OF_ENDER, "&6Night Vision", "&7&lNo Permission")));
             return;
         }
 
         if (player.hasPotionEffect(PotionEffectType.NIGHT_VISION)) {
             setEnabledGlassPanes(5, true, contents);
             contents.set(1, 5, ClickableItem.of(
-                    Items.create(Material.ENDER_EYE,
+                    Items.create(Material.EYE_OF_ENDER,
                             "&6Night Vision", ENABLED_LORE + NIGHT_VISION_LORE
                     ),
                     inventoryClickEvent -> {
@@ -189,7 +154,7 @@ public class UtilitiesMenuProvider implements InventoryProvider {
         } else {
             setEnabledGlassPanes(5, false, contents);
             contents.set(1, 5, ClickableItem.of(
-                    Items.create(Material.ENDER_EYE,
+                    Items.create(Material.EYE_OF_ENDER,
                             "&6Night Vision", DISABLED_LORE + NIGHT_VISION_LORE
                     ),
                     inventoryClickEvent -> {

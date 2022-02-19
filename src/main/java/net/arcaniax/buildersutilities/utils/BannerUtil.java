@@ -64,7 +64,7 @@ public class BannerUtil {
         allColors.add(DyeColor.BLUE);
         allColors.add(DyeColor.PURPLE);
         allColors.add(DyeColor.CYAN);
-        allColors.add(DyeColor.LIGHT_GRAY);
+        allColors.add(DyeColor.SILVER);
         allColors.add(DyeColor.GRAY);
         allColors.add(DyeColor.PINK);
         allColors.add(DyeColor.LIME);
@@ -210,7 +210,7 @@ public class BannerUtil {
             case YELLOW:
             case MAGENTA:
             case LIGHT_BLUE:
-            case LIGHT_GRAY:
+            case SILVER:
             case LIME:
             default:
                 return DyeColor.BLACK;

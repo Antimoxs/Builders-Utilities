@@ -27,8 +27,6 @@ package net.arcaniax.buildersutilities.listeners;
 import net.arcaniax.buildersutilities.BuildersUtilities;
 import net.arcaniax.buildersutilities.NoClipManager;
 import net.arcaniax.buildersutilities.Settings;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,20 +43,7 @@ public class PlayerQuitAndJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (BuildersUtilities.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
-            AttributeInstance attribute = event.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED);
-            if (attribute == null) {
-                return;
-            }
 
-            if (Settings.fixAttackSpeed) {
-                attribute.setBaseValue(1024.0D);
-            } else if (attribute.getBaseValue() == 1024.0D) {
-                attribute.setBaseValue(4.0D);
-            }
-            event.getPlayer().saveData();
-
-        }
     }
 
 }

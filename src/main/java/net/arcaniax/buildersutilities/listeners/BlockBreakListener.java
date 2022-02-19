@@ -28,7 +28,6 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.Slab;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -61,14 +60,16 @@ public class BlockBreakListener implements Listener {
         if (!e.getPlayer().hasPermission("builders.util.slabs")) {
             return;
         }
-        Material type = e.getPlayer().getInventory().getItemInMainHand().getType();
+        /* difficult to implement in 1.8 for now; not as important
+        Material type = e.getPlayer().getInventory().getItemInHand().getType();
         if (type.toString().toLowerCase().contains("slab")) {
             if (e.isCancelled()) {
                 return;
             }
             if (e.getBlock().getType().toString().toLowerCase().contains("slab")) {
                 if (isTop(e.getPlayer(), e.getBlock())) {
-                    Slab blockdata = (Slab) e.getBlock().getBlockData();
+
+                    Slab blockdata = (Slab) e.getBlock().getState().getData();
                     if (blockdata.getType().equals(Slab.Type.DOUBLE)) {
                         blockdata.setType(Slab.Type.BOTTOM);
                         e.getBlock().setBlockData(blockdata, true);
@@ -84,6 +85,8 @@ public class BlockBreakListener implements Listener {
                 }
             }
         }
+
+         */
     }
 
     private boolean isTop(Player player, Block block) {

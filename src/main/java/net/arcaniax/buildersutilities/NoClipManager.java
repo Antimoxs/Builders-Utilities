@@ -28,7 +28,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -40,7 +39,7 @@ public class NoClipManager {
     private final JavaPlugin javaPlugin;
 
     public NoClipManager(
-            final @NonNull JavaPlugin javaPlugin
+            final JavaPlugin javaPlugin
     ) {
         this.javaPlugin = javaPlugin;
     }

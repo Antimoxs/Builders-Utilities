@@ -48,8 +48,8 @@ public class PlayerInteractListener implements Listener {
                 && event.getClickedBlock().getType().equals(Material.DRAGON_EGG)
                 && Settings.preventDragonEggTeleport
                 && !(event.getPlayer().isSneaking()
-                && (!event.getPlayer().getInventory().getItemInOffHand().getType().isAir()
-                || !event.getPlayer().getInventory().getItemInMainHand().getType().isAir()))
+                    || !(event.getPlayer().getInventory().getItemInHand().getType() == Material.AIR)
+                )
         ) {
             event.setCancelled(true);
             if (Settings.sendDebugMessages) {
@@ -67,7 +67,7 @@ public class PlayerInteractListener implements Listener {
         if (Settings.disableSoilTrample) {
             if (event.getAction() == Action.PHYSICAL) {
                 Block block = event.getClickedBlock();
-                if (block != null && block.getType() == Material.FARMLAND) {
+                if (block != null && block.getType() == Material.SOIL) {
                     event.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
                     event.setCancelled(true);
                     if (Settings.sendDebugMessages) {

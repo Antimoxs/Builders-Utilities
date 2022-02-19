@@ -30,13 +30,14 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.TrapDoor;
+import org.bukkit.block.BlockState;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
+import org.bukkit.material.TrapDoor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -70,20 +71,16 @@ public class IronTrapdoorListener implements Listener {
         if (!e.getClickedBlock().getType().equals(Material.IRON_TRAPDOOR)) {
             return;
         }
-        if (BuildersUtilities.getInstance().getNmsManager().isAtLeastVersion(1, 9, 0)) {
-            if (!e.getHand().equals(EquipmentSlot.HAND)) {
-                return;
-            }
-        }
         if (e.getPlayer().isSneaking()) {
             return;
         }
         Bukkit.getScheduler().runTaskLater(BuildersUtilities.getInstance(), () -> {
             Block b = e.getClickedBlock();
-            TrapDoor trapDoor = (TrapDoor) b.getBlockData();
+            BlockState state = b.getState();
+            TrapDoor trapDoor = (TrapDoor) state.getData();
             trapDoor.setOpen(!trapDoor.isOpen());
-            b.setBlockData(trapDoor);
-            b.getWorld().playSound(b.getLocation(), trapDoor.isOpen() ? Sound.BLOCK_IRON_TRAPDOOR_CLOSE : Sound.BLOCK_IRON_TRAPDOOR_OPEN, 1F, 1F);
+            state.setData(trapDoor);
+            state.update();
         }, 0L);
         e.setCancelled(true);
     }
