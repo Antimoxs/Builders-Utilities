@@ -25,7 +25,6 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
-import net.arcaniax.buildersutilities.utils.LogManagerCompat;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -37,7 +36,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerInteractListener implements Listener {
 
-    private static final Logger logger = LogManagerCompat.getLogger();
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onDragonEggTP(PlayerInteractEvent event) {
@@ -53,7 +51,7 @@ public class PlayerInteractListener implements Listener {
         ) {
             event.setCancelled(true);
             if (Settings.sendDebugMessages) {
-                logger.info(
+                System.out.println(
                         "Dragon egg teleport was cancelled because prevent-dragon-egg-teleport: true");
             }
         }
@@ -71,7 +69,7 @@ public class PlayerInteractListener implements Listener {
                     event.setUseInteractedBlock(org.bukkit.event.Event.Result.DENY);
                     event.setCancelled(true);
                     if (Settings.sendDebugMessages) {
-                        logger.info(
+                        System.out.println(
                                 "Soil trampling was cancelled because disable-soil-trample: true");
                     }
                 }

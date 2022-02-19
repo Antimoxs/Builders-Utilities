@@ -25,7 +25,6 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
-import net.arcaniax.buildersutilities.utils.LogManagerCompat;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,14 +32,13 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class WeatherChangeListener implements Listener {
 
-    private static final Logger logger = LogManagerCompat.getLogger();
 
     @EventHandler
     public void onWeather(WeatherChangeEvent e) {
         if (Settings.disableWeatherChanges) {
             e.setCancelled(true);
             if (Settings.sendDebugMessages) {
-                logger.info(
+                System.out.println(
                         "Weather changing was cancelled because disable-weather-changes: true");
             }
         }

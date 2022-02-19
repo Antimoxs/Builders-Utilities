@@ -25,7 +25,6 @@
 package net.arcaniax.buildersutilities.listeners;
 
 import net.arcaniax.buildersutilities.Settings;
-import net.arcaniax.buildersutilities.utils.LogManagerCompat;
 import org.apache.logging.log4j.Logger;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,7 +32,6 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class TeleportListener implements Listener {
 
-    private static final Logger logger = LogManagerCompat.getLogger();
 
     @EventHandler
     public void onTeleport(PlayerTeleportEvent event) {
@@ -44,9 +42,9 @@ public class TeleportListener implements Listener {
             if (!event.getPlayer().hasPermission("builders.util.tpgm3")) {
                 event.setCancelled(true);
                 if (Settings.sendDebugMessages) {
-                    logger.info(
-                            "Spectate teleport was cancelled because {} lacks the permission builders.util.tpgm3",
-                            event.getPlayer()
+                    System.out.println(
+                            "Spectate teleport was cancelled because " + event.getPlayer().getName() + " lacks the permission builders" +
+                                    ".util.tpgm3"
                     );
                 }
             }

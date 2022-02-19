@@ -46,6 +46,7 @@ dependencies {
     implementation("dev.notmyfault.serverlib:ServerLib:2.3.1")
     implementation("io.papermc:paperlib:1.0.7")
     compileOnly("org.apache.logging.log4j:log4j-api:2.17.0")
+    implementation("com.google.guava:guava:r05")
 }
 
 var buildNumber by extra("")
@@ -78,6 +79,9 @@ tasks.named<ShadowJar>("shadowJar") {
         }
         relocate("org.incendo.serverlib", "net.arcaniax.buildersutilities.serverlib") {
             include(dependency("dev.notmyfault.serverlib:ServerLib:2.3.1"))
+        }
+        relocate("com.google", "net.arcaniax.buildersutilities.google") {
+            include(dependency("com.google.guava:guava:r05"))
         }
     }
     minimize()

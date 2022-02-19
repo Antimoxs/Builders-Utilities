@@ -38,8 +38,6 @@ import java.util.Set;
 
 public class CustomConfig {
 
-    private static final Logger logger = LogManagerCompat.getLogger();
-
     private final JavaPlugin plugin;
     private final String fileName;
     private final File configFile;
@@ -61,7 +59,7 @@ public class CustomConfig {
 
     public void reloadConfig() {
         if (!configFile.exists()) {
-            logger.info("Attempting to save resource: {}", configFile.getName());
+            System.out.println("Attempting to save resource: " + configFile.getName());
             plugin.saveResource(fileName, true);
         }
         config = YamlConfiguration.loadConfiguration(configFile);
@@ -71,7 +69,7 @@ public class CustomConfig {
         try {
             config.save(configFile);
         } catch (Exception e) {
-            logger.error("Couldn't save {}, because {}", fileName, e.getMessage());
+            System.out.println("Couldn't save " + fileName + ", because " + e.getMessage());
         }
         reloadConfig();
     }
